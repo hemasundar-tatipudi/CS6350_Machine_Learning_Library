@@ -4,9 +4,9 @@ from collections import Counter
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 
-column_headers = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'label']
-train_data = pd.read_csv("DecisionTree/data/bank/train.csv", names=column_headers)
-test_data = pd.read_csv("DecisionTree/data/bank/test.csv", names=column_headers)
+column_headers = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'label']
+train_data = pd.read_csv("DecisionTree/data/bank/train.csv", names=column_headers[-7:])
+test_data = pd.read_csv("DecisionTree/data/bank/test.csv", names=column_headers[-7:])
 
 combined_data = pd.concat([train_data, test_data], keys=['train', 'test'])
 
