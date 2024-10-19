@@ -118,7 +118,7 @@ X_test = test_df.drop('y', axis=1).values
 y_test = test_df['y'].apply(lambda x: 1 if x == 'yes' else -1).values
 
 # Vary the number of trees from 1 to 500
-num_trees = np.arange(1, 52, 10)
+num_trees = np.arange(1, 501, 10)
 train_errors = []
 test_errors = []
 
@@ -135,7 +135,6 @@ for n in num_trees:
 plt.plot(num_trees, train_errors, label='Training Error')
 plt.plot(num_trees, test_errors, label='Test Error')
 plt.title('Bagged Trees: Training vs Test Error')
-plt.xticks(ticks=[i for i in range(0, 51, 10)], labels=[str(i * 10) for i in range(0, 51, 10)])
 plt.xlabel('Number of Trees')
 plt.ylabel('Error Rate')
 plt.legend()

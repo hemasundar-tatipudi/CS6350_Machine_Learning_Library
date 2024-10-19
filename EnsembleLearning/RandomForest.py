@@ -75,7 +75,7 @@ class RandomForestClassifier:
         return np.sign(predictions)
 
 
-num_trees_range = range(1, 51)
+num_trees_range = range(1, 501)
 max_features_range = [2, 4, 6]
 
 train_errors_rf = {2: [], 4: [], 6: []}
@@ -101,7 +101,7 @@ for max_features in max_features_range:
     plt.plot(num_trees_range, train_errors_rf[max_features], label=f'Train Error (max_features={max_features})')
     plt.plot(num_trees_range, test_errors_rf[max_features], label=f'Test Error (max_features={max_features})', linestyle='dashed')
 
-plt.xticks(ticks=[i for i in range(0, 51, 10)], labels=[str(i * 10) for i in range(0, 51, 10)])
+
 plt.xlabel('Number of Random Trees')
 plt.ylabel('Error')
 plt.title('Random Forest: Train and Test errors vs Number of Trees')
