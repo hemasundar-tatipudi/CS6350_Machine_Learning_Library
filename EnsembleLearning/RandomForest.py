@@ -29,8 +29,8 @@ dtype_dict = {
     'poutcome': str,
     'label': str
 }
-train_file = "DecisionTree/data/bank/train.csv"
-test_file = "DecisionTree/data/bank/test.csv"
+train_file = "data/bank/train.csv"
+test_file = "data/bank/test.csv"
 train_df = pd.read_csv(train_file, names=column_headers, dtype=dtype_dict)
 X_train = train_df.drop('label', axis=1)
 y_train = train_df['label'].apply(lambda x: 1 if x == 'yes' else 0).values.astype(float)

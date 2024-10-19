@@ -161,8 +161,8 @@ def main():
                       'previous', 'poutcome', 'label']
 
     # Load your dataset with the specified column headers
-    train_data = pd.read_csv("DecisionTree/data/bank/train.csv", names=column_headers, header=None)
-    test_data = pd.read_csv("DecisionTree/data/bank/test.csv", names=column_headers, header=None)
+    train_data = pd.read_csv("data/bank/train.csv", names=column_headers, header=None)
+    test_data = pd.read_csv("data/bank/test.csv", names=column_headers, header=None)
 
     # Encode the labels as -1 and 1 (for AdaBoost)
     train_data['label'].replace({'no': -1, 'yes': 1}, inplace=True)

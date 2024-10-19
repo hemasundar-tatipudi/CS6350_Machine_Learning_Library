@@ -106,8 +106,8 @@ class BaggedTreesClassifier:
 column_headers = ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'y']
 dtype_dict = {'age': float, 'job': str, 'marital': str, 'education': str, 'default': str, 'balance': float, 'housing': str, 'loan': str, 'contact': str, 'day': float, 'month': str, 'duration': float, 'campaign': float, 'pdays': float, 'previous': float, 'poutcome': str, 'y': str }
 
-train_file = "DecisionTree/data/bank/train.csv"
-test_file = "DecisionTree/data/bank/test.csv"
+train_file = "data/bank/train.csv"
+test_file = "data/bank/test.csv"
 
 train_df = pd.read_csv(train_file, names=column_headers, dtype=dtype_dict)
 X_train = train_df.drop('y', axis=1).values
