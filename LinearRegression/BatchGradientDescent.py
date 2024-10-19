@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-train_data = pd.read_csv('data/concrete/train.csv')
-test_data = pd.read_csv('data/concrete/test.csv')
+train_data = pd.read_csv('LinearRegression/data/concrete/train.csv')
+test_data = pd.read_csv('LinearRegression/data/concrete/test.csv')
 
 X_train = train_data.iloc[:, :-1].values 
 y_train = train_data.iloc[:, -1].values
