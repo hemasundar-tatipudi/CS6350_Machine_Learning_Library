@@ -1,13 +1,15 @@
+```markdown
+## Linear Regression Library
 
-# Linear Regression
+This folder contains implementations of least-mean-square (LMS) methods using batch-gradient and stochastic gradient.
 
-Implementations: Batch Gradient Descent, Stochastic Gradient Descent, Optimal Weights
+### How to Run
 
-
-# Commands
-
+```bash
 python3 BatchGradientDescent.py
 
+```bash
 python3 StochasticGradientDescent.py
 
+```bash
 python3 OptimalWeights.py
