@@ -2,54 +2,40 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
-# Load the datasets using Pandas
-train_df = pd.read_csv('Perceptron/data/bank-note/train.csv', header=None)
-test_df = pd.read_csv('Perceptron/data/bank-note/test.csv', header=None)
+def averaged_perceptron(X_train, y_train, X_test, y_test, eta=0.1, num_epochs=50):
 
-# Split the data into features (X) and labels (y)
-X_train = train_df.iloc[:, :-1].values  # Training features
-y_train = train_df.iloc[:, -1].values   # Training labels
-X_test = test_df.iloc[:, :-1].values    # Test features
-y_test = test_df.iloc[:, -1].values     # Test labels
+    current_weights = np.zeros(X_train.shape[1])
+    cumulative_weights = np.zeros(X_train.shape[1])
 
-# Feature scaling (standardize the data to mean=0, variance=1)
+    for epoch in range(num_epochs):
+        for features, label in zip(X_train, y_train):
+            if label * np.dot(current_weights, features) <= 0:
+                current_weights += eta * label * features
+            cumulative_weights += current_weights
+
+    avg_weight_vector = cumulative_weights / (num_epochs * len(X_train))
+
+    misclassifications = sum(
+        label * np.dot(avg_weight_vector, features) <= 0
+        for features, label in zip(X_test, y_test)
+    )
+    test_error_rate = misclassifications / len(X_test)
+
+    return avg_weight_vector, test_error_rate
+
+train_data = pd.read_csv('Perceptron/data/bank-note/train.csv', header=None)
+test_data = pd.read_csv('Perceptron/data/bank-note/test.csv', header=None)
+
+X_train = train_data.iloc[:, :-1].values
+y_train = train_data.iloc[:, -1].values
+X_test = test_data.iloc[:, :-1].values
+y_test = test_data.iloc[:, -1].values
+
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-# Initialize weight vectors for the current and average weights
-num_features = X_train.shape[1]
-weights = np.zeros(num_features)
-avg_weights = np.zeros(num_features)
+avg_weights, avg_test_error = averaged_perceptron(X_train, y_train, X_test, y_test)
 
-# Set the hyperparameters: learning rate and number of epochs
-learning_rate = 0.1  # Increased learning rate
-epochs = 50          # Increased number of epochs
-
-# Train the Averaged Perceptron
-for _ in range(epochs):
-    for i in range(len(X_train)):
-        xi = X_train[i]
-        yi = y_train[i]
-        
-        # Update weights if the prediction is incorrect
-        if yi * np.dot(weights, xi) <= 0:
-            weights += learning_rate * yi * xi
-        
-        # Update the average weight vector
-        avg_weights += weights
-
-# Average the weight vector across all epochs
-avg_weights /= (epochs * len(X_train))
-
-# Calculate the average prediction error on the test set
-error_count = 0
-for i in range(len(X_test)):
-    if y_test[i] * np.dot(avg_weights, X_test[i]) <= 0:
-        error_count += 1
-
-avg_error = error_count / len(X_test)
-
-# Output the results
 print("Learned Weight Vector (Average Weight Vector):", avg_weights)
-print("Average Prediction Error on Test Data:", avg_error)
+print("Average Prediction Error on Test Data:", avg_test_error)
