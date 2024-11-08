@@ -53,4 +53,4 @@ weight_vectors, count_correct, avg_test_error = train_voted_perceptron(X_train, 
 for i, (w, count) in enumerate(zip(weight_vectors, count_correct)):
     print(f"Weight Vector {i + 1}: {w}, Correct Count: {count}")
 
-print(f"Average Test Error: {avg_test_error:.2f}")
+print(f"Average Test Error: {avg_test_error:.3f}")
