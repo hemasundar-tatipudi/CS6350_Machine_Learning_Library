@@ -3,7 +3,7 @@
 This folder implements the **Perceptron**, **Voted Perceptron**, and **Average Perceptron** algorithms for binary classification.
 
 
-## How to Run
+### How to Run
 
 ```bash
 echo "Standard Perceptron"
